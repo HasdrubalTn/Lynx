@@ -51,7 +51,7 @@ public sealed class ApiGatewayHealthTests
 
         var mockConfiguration = Substitute.For<IConfiguration>();
         mockConfiguration.GetConnectionString("DefaultConnection")
-                         .Returns("Host=localhost;Port=5432;Database=lynx;Username=lynx;Password=example");
+                         .Returns("Host=invalid-nonexistent-host.local;Port=9999;Database=nonexistent;Username=invalid;Password=invalid");
 
         var sut = new HealthController(mockHttpClientFactory, mockConfiguration, logger);
 
