@@ -2,6 +2,8 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System;
+using ApiGateway.Controllers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllers();
-builder.Services.AddHttpClient();
+
+// Add typed HttpClient for NotificationService
+builder.Services.AddHttpClient<TestEmailController>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:8082"); // NotificationService URL
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
 
 // Add JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
