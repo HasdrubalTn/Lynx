@@ -1,0 +1,25 @@
+name: Feature
+description: Create a new feature
+title: "[Feature] "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: What, description: One-sentence objective }
+  - type: textarea
+    id: why
+    attributes: { label: Why, description: Business/technical value }
+  - type: textarea
+    id: acceptance
+    attributes: { label: Acceptance Criteria (Gherkin), placeholder: |
+        Feature: <name>
+          Scenario: <case>
+            Given ...
+            When ...
+            Then ... }
+  - type: dropdown
+    id: type
+    attributes:
+      label: Feature Type
+      options: [functional, architectural, refactoring, technical]
+    validations: { required: true }

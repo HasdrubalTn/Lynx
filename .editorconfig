@@ -1,0 +1,6 @@
+root = true
+
+[*.cs]
+dotnet_diagnostic.IDE0060.severity = warning
+dotnet_style_qualification_for_event = true:suggestion
+csharp_new_line_before_members_in_object_initializers = true

@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: lynx
+      POSTGRES_DB: lynx
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  apigateway:
+    build: ./src/ApiGateway
+    ports: ["8080:8080"]
+    depends_on: [postgres]
+
+  identity:
+    build: ./src/IdentityService
+    ports: ["8081:8080"]
+    depends_on: [postgres]
+
+  notification:
+    build: ./src/NotificationService
+    ports: ["8082:8080"]
+    depends_on: [postgres]
+
+volumes:
+  pgdata:

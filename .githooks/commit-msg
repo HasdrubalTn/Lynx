@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+MSGFILE="$1"
+grep -E "^(feat|fix|docs|chore|refactor|test|perf)(\(.+\))?: .+" "$MSGFILE" >/dev/null || {
+  echo "Commit message must follow Conventional Commits, e.g., feat(api): add endpoint" >&2
+  exit 1
+}

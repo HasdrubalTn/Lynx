@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Prevent committing generated lock files with unresolved conflicts
+if git diff --cached --name-only | grep -E '\.(cs|ts|tsx)$' >/dev/null; then
+  dotnet format --verify-no-changes || (echo "Run dotnet format."; exit 1)
+fi

@@ -1,0 +1,12 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 17
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "src/ApiGateway/ApiGateway.csproj", "{A1A11111-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService", "src/IdentityService/IdentityService.csproj", "{A2A22222-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "src/NotificationService/NotificationService.csproj", "{A3A33333-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway.UnitTests", "tests/ApiGateway.UnitTests/ApiGateway.UnitTests.csproj", "{A4A44444-4444-4444-4444-444444444444}"
+EndProject
+Global
+EndGlobal
