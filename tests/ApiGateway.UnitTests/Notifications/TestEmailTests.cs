@@ -31,7 +31,7 @@ public class TestEmailTests
     {
         this.fixture = new Fixture();
         this.fixture.Customize(new AutoNSubstituteCustomization());
-        
+
         this.mockLogger = this.fixture.Create<ILogger<TestEmailController>>();
         this.httpClient = new HttpClient();
         this.controller = new TestEmailController(this.httpClient, this.mockLogger);
@@ -101,10 +101,10 @@ public class TestEmailTests
             new Claim(ClaimTypes.Name, "testuser"),
             new Claim(ClaimTypes.Role, role),
         };
-        
+
         var identity = new ClaimsIdentity(claims, "TestAuth");
         var principal = new ClaimsPrincipal(identity);
-        
+
         this.controller.ControllerContext = new ControllerContext
         {
             HttpContext = new DefaultHttpContext
