@@ -36,7 +36,6 @@
           }
         },
         "warningProperties": {
-          "allWarningsAsErrors": true,
           "warnAsError": [
             "NU1605"
           ]
@@ -60,6 +59,10 @@
               "target": "Package",
               "version": "[4.*, )"
             },
+            "AutoFixture.Xunit2": {
+              "target": "Package",
+              "version": "[4.*, )"
+            },
             "FluentAssertions": {
               "target": "Package",
               "version": "[6.*, )"
@@ -67,7 +70,7 @@
             "Microsoft.CodeAnalysis.NetAnalyzers": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "(, )"
+              "version": "[8.0.0, )"
             },
             "NSubstitute": {
               "target": "Package",

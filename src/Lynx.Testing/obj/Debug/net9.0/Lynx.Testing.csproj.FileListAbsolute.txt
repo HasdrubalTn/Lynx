@@ -1,0 +1,15 @@
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.csproj.AssemblyReference.cache
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.AssemblyInfoInputs.cache
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.AssemblyInfo.cs
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.csproj.CoreCompileInputs.cache
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.sourcelink.json
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\bin\Debug\net9.0\Lynx.Testing.deps.json
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\bin\Debug\net9.0\Lynx.Testing.runtimeconfig.json
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\bin\Debug\net9.0\Lynx.Testing.dll
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\bin\Debug\net9.0\Lynx.Testing.pdb
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.dll
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\refint\Lynx.Testing.dll
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.pdb
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\Lynx.Testing.genruntimeconfig.cache
+D:\Dev\Solutions\Lynx\src\Lynx.Testing\obj\Debug\net9.0\ref\Lynx.Testing.dll

@@ -1,5 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using Lynx.Abstractions.Health;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 
 namespace IdentityService.Controllers;
@@ -17,7 +24,7 @@ public sealed class HealthController(
     {
         using var _ = logger.BeginScope("HealthCheck:{Service}", "IdentityService");
         logger.LogInformation("Health check requested");
-        
+
         return Ok(new HealthCheckResponse
         {
             Status = HealthStatus.Healthy,
@@ -32,7 +39,7 @@ public sealed class HealthController(
         logger.LogInformation("Readiness check requested");
 
         var postgresqlStatus = await CheckPostgreSqlHealthAsync(cancellationToken);
-        
+
         var response = new HealthCheckResponse
         {
             Status = postgresqlStatus,
@@ -49,12 +56,12 @@ public sealed class HealthController(
     private async Task<HealthStatus> CheckPostgreSqlHealthAsync(CancellationToken cancellationToken)
     {
         using var scope = logger.BeginScope("DependencyCheck:{Dependency}", "PostgreSQL");
-        var connectionString = configuration.GetConnectionString("DefaultConnection") 
+        var connectionString = configuration.GetConnectionString("DefaultConnection")
             ?? "Host=localhost;Port=5432;Database=lynx;Username=lynx;Password=example";
 
         try
         {
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            var stopwatch = Stopwatch.StartNew();
             await using var connection = new NpgsqlConnection(connectionString);
             using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             timeoutCts.CancelAfter(_timeout);
@@ -65,7 +72,7 @@ public sealed class HealthController(
             await command.ExecuteScalarAsync(timeoutCts.Token);
             stopwatch.Stop();
 
-            logger.LogInformation("Dependency check completed: PostgreSQL - {Status} - {ResponseTime}ms", 
+            logger.LogInformation("Dependency check completed: PostgreSQL - {Status} - {ResponseTime}ms",
                 HealthStatus.Healthy, stopwatch.ElapsedMilliseconds);
             return HealthStatus.Healthy;
         }

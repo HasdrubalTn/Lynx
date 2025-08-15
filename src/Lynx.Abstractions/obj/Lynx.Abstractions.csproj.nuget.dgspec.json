@@ -36,7 +36,6 @@
           }
         },
         "warningProperties": {
-          "allWarningsAsErrors": true,
           "warnAsError": [
             "NU1605"
           ]
@@ -55,7 +54,7 @@
             "Microsoft.CodeAnalysis.NetAnalyzers": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "(, )"
+              "version": "[8.0.0, )"
             },
             "StyleCop.Analyzers": {
               "suppressParent": "All",

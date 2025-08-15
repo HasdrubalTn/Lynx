@@ -1,15 +1,20 @@
+// <copyright file="ApiGatewayHealthTests.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ApiGateway.UnitTests.Health;
+
+using System.Net;
 using ApiGateway.Controllers;
 using Lynx.Abstractions.Health;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RichardSzalay.MockHttp;
-using System.Net;
-
-namespace ApiGateway.UnitTests.Health;
 
 public sealed class ApiGatewayHealthTests
 {
-    [Fact, AutoData]
+    [Fact]
+    [AutoData]
     public void Health_Returns200([Frozen] ILogger<HealthController> logger)
     {
         // Arrange
@@ -26,7 +31,8 @@ public sealed class ApiGatewayHealthTests
         response.Status.Should().Be(HealthStatus.Healthy);
     }
 
-    [Fact, AutoData]
+    [Fact]
+    [AutoData]
     public async Task Ready_Returns200_WhenAllDepsOk(
         [Frozen] ILogger<HealthController> logger)
     {
@@ -59,7 +65,8 @@ public sealed class ApiGatewayHealthTests
         response.Dependencies.Should().ContainKey("postgresql");
     }
 
-    [Fact, AutoData]
+    [Fact]
+    [AutoData]
     public async Task Ready_Returns503_WhenIdentityDown(
         [Frozen] ILogger<HealthController> logger)
     {
@@ -91,7 +98,8 @@ public sealed class ApiGatewayHealthTests
         response.Dependencies["identityService"].Should().Be(HealthStatus.Unhealthy);
     }
 
-    [Fact, AutoData]
+    [Fact]
+    [AutoData]
     public async Task Ready_Returns503_WhenNotificationDown(
         [Frozen] ILogger<HealthController> logger)
     {
@@ -123,7 +131,8 @@ public sealed class ApiGatewayHealthTests
         response.Dependencies["notificationService"].Should().Be(HealthStatus.Unhealthy);
     }
 
-    [Fact, AutoData]
+    [Fact]
+    [AutoData]
     public async Task Ready_Returns503_WhenPostgresDown(
         [Frozen] ILogger<HealthController> logger)
     {

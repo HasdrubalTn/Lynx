@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lynx.Abstractions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.0+d1dd552a9b415c58c9960a2470863d3359319987")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.0+57119c3913001a3be083d0a45965dd5ea3ed3ba8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lynx.Abstractions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lynx.Abstractions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.1.0.0")]
