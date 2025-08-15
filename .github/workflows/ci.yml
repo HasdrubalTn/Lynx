@@ -21,6 +21,8 @@ jobs:
           TYPE=$(grep -i "Single feature type" -n .github/pull_request_template.md >/dev/null && echo "ok" || echo "missing"); echo $TYPE
       - name: Restore
         run: dotnet restore
+      - name: Install Code Coverage
+        run: dotnet tool install -g dotnet-coverage
       - name: Build Main Services
         run: |
           dotnet build src/ApiGateway/ApiGateway.csproj --configuration Release
@@ -31,4 +33,4 @@ jobs:
       - name: Format Check
         run: echo "Format check temporarily disabled - StyleCop warnings need fixing"
       - name: Test
-        run: echo "Tests temporarily disabled - test projects need fixing"
+        run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory TestResults

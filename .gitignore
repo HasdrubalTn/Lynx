@@ -538,3 +538,11 @@ TestResults/
 /tests/NotificationService.UnitTests/obj/Debug/net9.0/NotificationService.UnitTests.AssemblyInfo.cs
 /tests/NotificationService.UnitTests/obj/Debug/net9.0/NotificationService.UnitTests.AssemblyInfoInputs.cache
 /tests/NotificationService.UnitTests/obj/Debug/net9.0/NotificationService.UnitTests.csproj.AssemblyReference.cache
+/src/Lynx.Abstractions/obj/Debug/net9.0/Lynx.Abstractions.csproj.FileListAbsolute.txt
+/src/Lynx.Testing/obj/Debug/net9.0/Lynx.Testing.csproj.CoreCompileInputs.cache
+/src/Lynx.Testing/obj/Debug/net9.0/Lynx.Testing.csproj.FileListAbsolute.txt
+/tests/ApiGateway.UnitTests/obj/Debug/net9.0/ApiGateway.UnitTests.assets.cache
+/tests/ApiGateway.UnitTests/obj/ApiGateway.UnitTests.csproj.nuget.dgspec.json
+/tests/ApiGateway.UnitTests/obj/ApiGateway.UnitTests.csproj.nuget.g.targets
+/tests/ApiGateway.UnitTests/obj/project.assets.json
+/tests/ApiGateway.UnitTests/obj/project.nuget.cache

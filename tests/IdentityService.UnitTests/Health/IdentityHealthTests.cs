@@ -6,13 +6,14 @@ namespace IdentityService.UnitTests.Health;
 
 using IdentityService.Controllers;
 using Lynx.Abstractions.Health;
+using Lynx.Testing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 public sealed class IdentityHealthTests
 {
     [Theory]
-    [AutoData]
+    [AutoDataWithMocking]
     public void Health_Returns200([Frozen] ILogger<HealthController> logger)
     {
         // Arrange
@@ -29,7 +30,7 @@ public sealed class IdentityHealthTests
     }
 
     [Theory]
-    [AutoData]
+    [AutoDataWithMocking]
     public async Task Ready_Returns200([Frozen] ILogger<HealthController> logger)
     {
         // Arrange

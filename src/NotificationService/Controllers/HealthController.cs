@@ -49,7 +49,7 @@ public sealed class HealthController(
             Status = postgresqlStatus,
             Dependencies = new Dictionary<string, HealthStatus>
             {
-                ["postgresql"] = postgresqlStatus
+                ["postgresql"] = postgresqlStatus,
             },
         };
 

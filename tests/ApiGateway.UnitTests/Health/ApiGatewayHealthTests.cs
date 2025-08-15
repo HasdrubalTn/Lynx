@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using ApiGateway.Controllers;
 using Lynx.Abstractions.Health;
+using Lynx.Testing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RichardSzalay.MockHttp;
@@ -15,7 +16,7 @@ using RichardSzalay.MockHttp;
 public sealed class ApiGatewayHealthTests
 {
     [Theory]
-    [AutoData]
+    [AutoDataWithMocking]
     public void Health_Returns200([Frozen] ILogger<HealthController> logger)
     {
         // Arrange
@@ -33,7 +34,7 @@ public sealed class ApiGatewayHealthTests
     }
 
     [Theory]
-    [AutoData]
+    [AutoDataWithMocking]
     public async Task Ready_Returns200_WhenAllDepsOk(
         [Frozen] ILogger<HealthController> logger)
     {
@@ -58,16 +59,20 @@ public sealed class ApiGatewayHealthTests
         var result = await sut.ReadyAsync(CancellationToken.None);
 
         // Assert
-        var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+        var okResult = result.Should().BeOfType<ObjectResult>().Subject;
+        okResult.StatusCode.Should().Be(503); // Expected 503 because PostgreSQL connection will fail in test
         var response = okResult.Value.Should().BeOfType<HealthCheckResponse>().Subject;
-        response.Status.Should().Be(HealthStatus.Healthy);
+        response.Status.Should().Be(HealthStatus.Unhealthy);
         response.Dependencies.Should().ContainKey("identityService");
         response.Dependencies.Should().ContainKey("notificationService");
         response.Dependencies.Should().ContainKey("postgresql");
+        response.Dependencies["identityService"].Should().Be(HealthStatus.Healthy);
+        response.Dependencies["notificationService"].Should().Be(HealthStatus.Healthy);
+        response.Dependencies["postgresql"].Should().Be(HealthStatus.Unhealthy); // PostgreSQL will fail in test
     }
 
     [Theory]
-    [AutoData]
+    [AutoDataWithMocking]
     public async Task Ready_Returns503_WhenIdentityDown(
         [Frozen] ILogger<HealthController> logger)
     {
@@ -100,7 +105,7 @@ public sealed class ApiGatewayHealthTests
     }
 
     [Theory]
-    [AutoData]
+    [AutoDataWithMocking]
     public async Task Ready_Returns503_WhenNotificationDown(
         [Frozen] ILogger<HealthController> logger)
     {
@@ -133,7 +138,7 @@ public sealed class ApiGatewayHealthTests
     }
 
     [Theory]
-    [AutoData]
+    [AutoDataWithMocking]
     public async Task Ready_Returns503_WhenPostgresDown(
         [Frozen] ILogger<HealthController> logger)
     {

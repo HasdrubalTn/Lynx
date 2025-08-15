@@ -76,12 +76,14 @@ public sealed class HealthController(
     {
         using var scope = logger.BeginScope("DependencyCheck:{Dependency}", serviceName);
         var httpClient = httpClientFactory.CreateClient();
-        httpClient.Timeout = this.timeout;
 
         try
         {
             var stopwatch = Stopwatch.StartNew();
-            var response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, healthUrl), cancellationToken);
+            using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            timeoutCts.CancelAfter(this.timeout);
+
+            var response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, healthUrl), timeoutCts.Token);
             stopwatch.Stop();
 
             var status = response.IsSuccessStatusCode ? HealthStatus.Healthy : HealthStatus.Unhealthy;
@@ -93,7 +95,7 @@ public sealed class HealthController(
 
             return status;
         }
-        catch (TaskCanceledException ex) when (ex.InnerException is TimeoutException)
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
         {
             logger.LogWarning("Dependency check timeout: {Service} - {Error}", serviceName, "TimeoutError");
             return HealthStatus.Unhealthy;

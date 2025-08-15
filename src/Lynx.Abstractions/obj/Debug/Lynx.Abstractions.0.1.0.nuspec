@@ -5,7 +5,7 @@
     <version>0.1.0</version>
     <authors>Lynx.Abstractions</authors>
     <description>Package Description</description>
-    <repository type="git" commit="49e59f5224e286acdfc4354dd7765cb786d0d02a" />
+    <repository type="git" commit="aebe30ba22131e7f9c733c8adb15baed87c4e22b" />
     <dependencies>
       <group targetFramework="net9.0" />
     </dependencies>
