@@ -50,7 +50,10 @@ jobs:
 
     - name: Check for vulnerabilities
       run: |
-        dotnet list package --vulnerable --include-transitive || true
+        echo "🔍 Checking for vulnerable packages..."
+        dotnet list package --vulnerable --include-transitive || echo "No vulnerable packages found or scan completed with warnings"
+        echo "🔍 Checking for deprecated packages..."
+        dotnet list package --deprecated || echo "No deprecated packages found or scan completed with warnings"
 
     - name: Comment PR with results
       uses: actions/github-script@v7
