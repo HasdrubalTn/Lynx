@@ -1,0 +1,131 @@
+using Lynx.Abstractions.Health;
+using Microsoft.AspNetCore.Mvc;
+using Npgsql;
+
+namespace ApiGateway.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public sealed class HealthController(
+    IHttpClientFactory httpClientFactory,
+    IConfiguration configuration,
+    ILogger<HealthController> logger) : ControllerBase
+{
+    private readonly TimeSpan _timeout = TimeSpan.FromSeconds(5);
+
+    [HttpGet("health")]
+    public IActionResult Health()
+    {
+        using var _ = logger.BeginScope("HealthCheck:{Service}", "ApiGateway");
+        logger.LogInformation("Health check requested");
+        
+        return Ok(new HealthCheckResponse
+        {
+            Status = HealthStatus.Healthy,
+            Timestamp = DateTime.UtcNow
+        });
+    }
+
+    [HttpGet("ready")]
+    public async Task<IActionResult> ReadyAsync(CancellationToken cancellationToken)
+    {
+        using var _ = logger.BeginScope("HealthCheck:{Service}", "ApiGateway");
+        logger.LogInformation("Readiness check requested");
+
+        var response = new HealthCheckResponse();
+        var dependencies = new Dictionary<string, HealthStatus>();
+
+        // Check IdentityService
+        var identityStatus = await CheckServiceHealthAsync("IdentityService", "http://localhost:8081/health", cancellationToken);
+        dependencies.Add("identityService", identityStatus);
+
+        // Check NotificationService
+        var notificationStatus = await CheckServiceHealthAsync("NotificationService", "http://localhost:8082/health", cancellationToken);
+        dependencies.Add("notificationService", notificationStatus);
+
+        // Check PostgreSQL
+        var postgresqlStatus = await CheckPostgreSqlHealthAsync(cancellationToken);
+        dependencies.Add("postgresql", postgresqlStatus);
+
+        response = response with
+        {
+            Dependencies = dependencies,
+            Status = dependencies.Values.All(s => s == HealthStatus.Healthy) 
+                ? HealthStatus.Healthy 
+                : HealthStatus.Unhealthy
+        };
+
+        var statusCode = response.Status == HealthStatus.Healthy ? 200 : 503;
+        return StatusCode(statusCode, response);
+    }
+
+    private async Task<HealthStatus> CheckServiceHealthAsync(string serviceName, string healthUrl, CancellationToken cancellationToken)
+    {
+        using var scope = logger.BeginScope("DependencyCheck:{Dependency}", serviceName);
+        var httpClient = httpClientFactory.CreateClient();
+        httpClient.Timeout = _timeout;
+
+        try
+        {
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            var response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, healthUrl), cancellationToken);
+            stopwatch.Stop();
+
+            var status = response.IsSuccessStatusCode ? HealthStatus.Healthy : HealthStatus.Unhealthy;
+            logger.LogInformation("Dependency check completed: {Service} - {Status} - {ResponseTime}ms", 
+                serviceName, status, stopwatch.ElapsedMilliseconds);
+
+            return status;
+        }
+        catch (TaskCanceledException ex) when (ex.InnerException is TimeoutException)
+        {
+            logger.LogWarning("Dependency check timeout: {Service} - {Error}", serviceName, "TimeoutError");
+            return HealthStatus.Unhealthy;
+        }
+        catch (HttpRequestException ex)
+        {
+            logger.LogWarning("Dependency check connection failure: {Service} - {Error}", serviceName, ex.Message);
+            return HealthStatus.Unhealthy;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Dependency check unexpected error: {Service}", serviceName);
+            return HealthStatus.Unhealthy;
+        }
+    }
+
+    private async Task<HealthStatus> CheckPostgreSqlHealthAsync(CancellationToken cancellationToken)
+    {
+        using var scope = logger.BeginScope("DependencyCheck:{Dependency}", "PostgreSQL");
+        var connectionString = configuration.GetConnectionString("DefaultConnection") 
+            ?? "Host=localhost;Port=5432;Database=lynx;Username=lynx;Password=example";
+
+        try
+        {
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            await using var connection = new NpgsqlConnection(connectionString);
+            using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            timeoutCts.CancelAfter(_timeout);
+
+            await connection.OpenAsync(timeoutCts.Token);
+            await using var command = connection.CreateCommand();
+            command.CommandText = "SELECT 1";
+            await command.ExecuteScalarAsync(timeoutCts.Token);
+            stopwatch.Stop();
+
+            logger.LogInformation("Dependency check completed: PostgreSQL - {Status} - {ResponseTime}ms", 
+                HealthStatus.Healthy, stopwatch.ElapsedMilliseconds);
+            return HealthStatus.Healthy;
+        }
+        catch (OperationCanceledException)
+        {
+            logger.LogWarning("Dependency check timeout: PostgreSQL - {Error}", "TimeoutError");
+            return HealthStatus.Unhealthy;
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning("Dependency check connection failure: PostgreSQL - {Error}", ex.Message);
+            return HealthStatus.Unhealthy;
+        }
+    }
+}

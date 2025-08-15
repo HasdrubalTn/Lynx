@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "QzrAwdJmmGo=",
+  "success": false,
+  "projectFilePath": "D:\\Dev\\Solutions\\Lynx\\src\\Lynx.Abstractions\\Lynx.Abstractions.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mselm\\.nuget\\packages\\microsoft.codeanalysis.netanalyzers\\5.0.0\\microsoft.codeanalysis.netanalyzers.5.0.0.nupkg.sha512",
+    "C:\\Users\\mselm\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.556\\stylecop.analyzers.1.2.0-beta.556.nupkg.sha512",
+    "C:\\Users\\mselm\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.556\\stylecop.analyzers.unstable.1.2.0.556.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1604",
+      "level": "Error",
+      "message": "Avertissement comme erreur : La dépendance du projet Microsoft.CodeAnalysis.NetAnalyzers ne contient pas de limite inférieure inclusive. Incluez une limite inférieure dans la version de dépendance pour assurer des résultats de restauration cohérents.",
+      "projectPath": "D:\\Dev\\Solutions\\Lynx\\src\\Lynx.Abstractions\\Lynx.Abstractions.csproj",
+      "filePath": "D:\\Dev\\Solutions\\Lynx\\src\\Lynx.Abstractions\\Lynx.Abstractions.csproj",
+      "libraryId": "Microsoft.CodeAnalysis.NetAnalyzers",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v9.0"
+      ]
+    }
+  ]
+}

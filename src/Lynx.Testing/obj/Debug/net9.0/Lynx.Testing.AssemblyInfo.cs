@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lynx.Testing")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.0+a77e1d4075a04faa2b5c3810bc4aa878248860bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lynx.Testing")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lynx.Testing")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.1.0.0")]

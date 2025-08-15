@@ -1,0 +1,107 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Dev\\Solutions\\Lynx\\src\\Lynx.Testing\\Lynx.Testing.csproj": {}
+  },
+  "projects": {
+    "D:\\Dev\\Solutions\\Lynx\\src\\Lynx.Testing\\Lynx.Testing.csproj": {
+      "version": "0.1.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\Solutions\\Lynx\\src\\Lynx.Testing\\Lynx.Testing.csproj",
+        "projectName": "Lynx.Testing",
+        "projectPath": "D:\\Dev\\Solutions\\Lynx\\src\\Lynx.Testing\\Lynx.Testing.csproj",
+        "packagesPath": "C:\\Users\\mselm\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\Solutions\\Lynx\\src\\Lynx.Testing\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mselm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/<OWNER>/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true,
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "AutoFixture": {
+              "target": "Package",
+              "version": "[4.*, )"
+            },
+            "AutoFixture.AutoNSubstitute": {
+              "target": "Package",
+              "version": "[4.*, )"
+            },
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.*, )"
+            },
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "(, )"
+            },
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[5.*, )"
+            },
+            "StyleCop.Analyzers": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.2.0-beta.556, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
