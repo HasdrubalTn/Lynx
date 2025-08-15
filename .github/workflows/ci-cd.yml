@@ -105,9 +105,14 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
+    - name: Restore .NET dependencies
+      run: dotnet restore
+
     - name: Run security scan
       run: |
+        echo "🔍 Checking for vulnerable packages..."
         dotnet list package --vulnerable --include-transitive
+        echo "🔍 Checking for deprecated packages..."
         dotnet list package --deprecated
 
   deploy-staging:
