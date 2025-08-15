@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  apigateway:
+    build: ./src/ApiGateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=lynx;Username=lynx;Password=${POSTGRES_PASSWORD}
+      - IdentityService__BaseUrl=http://identityservice:8081
+      - NotificationService__BaseUrl=http://notificationservice:8082
+    depends_on:
+      - postgres
+      - identityservice
+      - notificationservice
+
+  identityservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=lynx;Username=lynx;Password=${POSTGRES_PASSWORD}
+
+  notificationservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=lynx;Username=lynx;Password=${POSTGRES_PASSWORD}
+      - IdentityService__BaseUrl=http://identityservice:8081
+
+  postgres:
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data_staging:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_staging:
