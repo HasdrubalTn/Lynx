@@ -29,9 +29,8 @@ public sealed class MeEndpointTests
     /// <summary>
     /// Tests that /me endpoint returns user claims when authenticated.
     /// </summary>
-    /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
     [Fact]
-    public async Task MeEndpoint_returns_user_claims_when_authenticated()
+    public void MeEndpoint_returns_user_claims_when_authenticated()
     {
         // Arrange
         var controller = this.CreateMeController();
@@ -53,7 +52,7 @@ public sealed class MeEndpointTests
         controller.ControllerContext = new ControllerContext { HttpContext = context };
 
         // Act
-        var result = await controller.GetCurrentUser();
+        var result = controller.GetCurrentUser();
 
         // Assert
         result.Should().BeOfType<OkObjectResult>();
@@ -92,7 +91,7 @@ public sealed class MeEndpointTests
 
     private MockMeController CreateMeController()
     {
-        var logger = Substitute.For<ILogger<MockMeController>>();
+        var logger = new Microsoft.Extensions.Logging.Abstractions.NullLogger<MockMeController>();
         return new MockMeController(logger);
     }
 
@@ -101,7 +100,7 @@ public sealed class MeEndpointTests
     /// </summary>
     [ApiController]
     [Route("api")]
-    private sealed class MockMeController : ControllerBase
+    public sealed class MockMeController : ControllerBase
     {
         private readonly ILogger<MockMeController> logger;
 
@@ -119,10 +118,8 @@ public sealed class MeEndpointTests
         /// </summary>
         /// <returns>User information DTO.</returns>
         [HttpGet("me")]
-        public async Task<IActionResult> GetCurrentUser()
+        public IActionResult GetCurrentUser()
         {
-            await Task.CompletedTask; // Simulate async operation
-
             if (!this.User.Identity?.IsAuthenticated ?? true)
             {
                 return this.Unauthorized();
@@ -130,7 +127,7 @@ public sealed class MeEndpointTests
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
             var username = this.User.FindFirst(ClaimTypes.Name)?.Value ?? string.Empty;
-            
+
             // Convert role claims to string array
             var roleClaims = this.User.FindAll(ClaimTypes.Role);
             var tempRoles = new string[10]; // Temporary array, assume max 10 roles

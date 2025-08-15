@@ -36,6 +36,7 @@ public sealed class AuthorizationPolicyTests
     {
         // Arrange
         var services = new ServiceCollection();
+        services.AddLogging();
         services.AddAuthorization(options =>
         {
             options.AddPolicy("AdminPolicy", policy =>
@@ -73,6 +74,7 @@ public sealed class AuthorizationPolicyTests
     {
         // Arrange
         var services = new ServiceCollection();
+        services.AddLogging();
         services.AddAuthorization(options =>
         {
             options.AddPolicy("AdminPolicy", policy =>
@@ -107,6 +109,7 @@ public sealed class AuthorizationPolicyTests
     {
         // Arrange
         var services = new ServiceCollection();
+        services.AddLogging();
         services.AddAuthorization(options =>
         {
             options.AddPolicy("AdminPolicy", policy =>

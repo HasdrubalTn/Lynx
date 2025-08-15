@@ -33,9 +33,8 @@ public sealed class AdminEndpointsAuthorizationTests
     /// <summary>
     /// Tests that admin endpoints require valid token with admin role.
     /// </summary>
-    /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
     [Fact]
-    public async Task AdminEndpoints_require_valid_token_with_admin_role()
+    public void AdminEndpoints_require_valid_token_with_admin_role()
     {
         // Arrange
         var controller = this.CreateMockAdminController();
@@ -56,7 +55,7 @@ public sealed class AdminEndpointsAuthorizationTests
         controller.ControllerContext = new ControllerContext { HttpContext = context };
 
         // Act
-        var result = await controller.GetAdminData();
+        var result = controller.GetAdminData();
 
         // Assert
         result.Should().BeOfType<OkObjectResult>();
@@ -123,7 +122,7 @@ public sealed class AdminEndpointsAuthorizationTests
 
     private MockAdminController CreateMockAdminController()
     {
-        var logger = Substitute.For<ILogger<MockAdminController>>();
+        var logger = new Microsoft.Extensions.Logging.Abstractions.NullLogger<MockAdminController>();
         return new MockAdminController(logger);
     }
 
@@ -133,7 +132,7 @@ public sealed class AdminEndpointsAuthorizationTests
     [ApiController]
     [Route("admin")]
     [Authorize(Roles = "admin")]
-    private sealed class MockAdminController : ControllerBase
+    public sealed class MockAdminController : ControllerBase
     {
         private readonly ILogger<MockAdminController> logger;
 
@@ -151,9 +150,8 @@ public sealed class AdminEndpointsAuthorizationTests
         /// </summary>
         /// <returns>Admin data response.</returns>
         [HttpGet("data")]
-        public async Task<IActionResult> GetAdminData()
+        public IActionResult GetAdminData()
         {
-            await Task.CompletedTask; // Simulate async operation
             return this.Ok(new { Message = "Admin data", UserId = this.User.Identity?.Name });
         }
     }

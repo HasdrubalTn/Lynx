@@ -552,3 +552,10 @@ TestResults/
 /tests/ApiGateway.UnitTests/obj/ApiGateway.UnitTests.csproj.nuget.g.targets
 /tests/ApiGateway.UnitTests/obj/project.assets.json
 /tests/ApiGateway.UnitTests/obj/project.nuget.cache
+/src/ApiGateway/obj/Debug/net9.0/ApiGateway.assets.cache
+/src/ApiGateway/obj/ApiGateway.csproj.nuget.dgspec.json
+/src/ApiGateway/obj/project.assets.json
+/src/ApiGateway/obj/project.nuget.cache
+/src/IdentityService/obj/Debug/net9.0/IdentityService.GeneratedMSBuildEditorConfig.editorconfig
+/tests/ApiGateway.UnitTests/obj/ApiGateway.UnitTests.csproj.nuget.g.props
+/tests/IdentityService.UnitTests/obj/Debug/net9.0/IdentityService.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
