@@ -1,13 +1,18 @@
-using NotificationService.Controllers;
-using Lynx.Abstractions.Health;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+// <copyright file="NotificationHealthTests.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace NotificationService.UnitTests.Health;
 
+using Lynx.Abstractions.Health;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using NotificationService.Controllers;
+
 public sealed class NotificationHealthTests
 {
-    [Fact, AutoData]
+    [Theory]
+    [AutoData]
     public void Health_Returns200([Frozen] ILogger<HealthController> logger)
     {
         // Arrange
@@ -23,7 +28,8 @@ public sealed class NotificationHealthTests
         response.Status.Should().Be(HealthStatus.Healthy);
     }
 
-    [Fact, AutoData]
+    [Theory]
+    [AutoData]
     public async Task Ready_Returns200([Frozen] ILogger<HealthController> logger)
     {
         // Arrange

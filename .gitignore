@@ -1,0 +1,540 @@
+# Visual Studio 2022
+.vs/
+.vscode/
+
+## User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Mono auto generated files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Additional temp directories and files
+[Tt]emp/
+[Tt]emporary/
+temp_*/
+tmp_*/
+*.tmp
+*.temp
+*.cache
+
+# .NET build outputs and temporary assemblies
+*.dll
+*.exe
+*.pdb
+*.xml
+*.deps.json
+*.runtimeconfig.json
+*.runtimeconfig.dev.json
+*.cache
+ref/
+refint/
+
+# Exclude specific DLLs we might want to keep
+!packages/**/*.dll
+!lib/**/*.dll
+!tools/**/*.dll
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# Visual Studio Code cache/options directory
+.vscode/
+
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# Visual Studio 2017 auto generated files
+Generated\ Files/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Benchmark Results
+BenchmarkDotNet.Artifacts/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Chutzpah Test files
+_Chutzpah*
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Visual Studio Trace Files
+*.e2e
+
+# TFS 2012 Local Workspace
+$tf/
+
+# Guidance Automation Toolkit
+*.gpState
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# TeamCity is a build add-in
+_TeamCity*
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+
+# AxoCover is a Code Coverage Tool
+.axoCover/*
+!.axoCover/settings.json
+
+# Coverlet is a free, cross platform Code Coverage Tool
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# Visual Studio code coverage results
+*.coverage
+*.coveragexml
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# MightyMoose
+*.mm.*
+AutoTest.Net/
+
+# Web workbench (sass)
+.sass-cache/
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject is a documentation generator add-in
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/Html2
+DocProject/Help/html
+
+# Click-Once directory
+publish/
+
+# Publish Web Output
+*.[Pp]ublish.xml
+*.azurePubxml
+# Note: Comment the next line if you want to checkin your web deploy settings,
+# but database connection strings (with potential passwords) will be unencrypted
+*.pubxml
+*.publishproj
+
+# Microsoft Azure Web App publish settings. Comment the next line if you want to
+# checkin your Azure Web App publish settings, but sensitive information contained
+# in these files may be traced.
+*.azurePubxml
+
+obj/
+
+# Microsoft Azure Build Output
+csx/
+*.build.csdef
+
+# Microsoft Azure Emulator
+ecf/
+rcf/
+
+# Windows Store app package directories and files
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+_pkginfo.txt
+*.appx
+*.appxbundle
+*.appxupload
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!?*.[Cc]ache/
+
+# Others
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+orleans.codegen.cs
+
+# Including strong name files can present a security risk
+# (https://github.com/github/gitignore/pull/2483#issue-259490424)
+#*.snk
+
+# Since there are multiple workflows, uncomment the next line to ignore bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+#bower_components/
+
+# RIA/Silverlight projects
+Generated_Code/
+
+# Backup & report files from converting an old project file
+# to a newer Visual Studio version. Backup files are not needed,
+# because we have git ;-)
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+CordovaApp.projitems*
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Business Intelligence projects
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+*.rptproj.rsuser
+*- [Bb]ackup.rdl
+*- [Bb]ackup ([0-9]).rdl
+*- [Bb]ackup ([0-9][0-9]).rdl
+
+# Microsoft Fakes
+FakesAssemblies/
+
+# GhostDoc plugin setting file
+*.GhostDoc.xml
+
+# Node.js Tools for Visual Studio
+.ntvs_analysis.dat
+node_modules/
+
+# Visual Studio 6 build log
+*.plg
+
+# Visual Studio 6 workspace options file
+*.opt
+
+# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+*.vbw
+
+# Visual Studio 6 auto-generated project file (contains which files were open etc.)
+*.vbp
+
+# Visual Studio 6 workspace and project file (working project files containing files to include in project)
+*.dsw
+*.dsp
+
+# Visual Studio 6 technical files
+*.ncb
+*.aps
+
+# Visual Studio LightSwitch build output
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions
+
+# Paket dependency manager
+.paket/paket.exe
+paket-files/
+
+# FAKE - F# Make
+.fake/
+
+# CodeRush personal settings
+.cr/personal
+
+# Python Tools for Visual Studio (PTVS)
+__pycache__/
+*.pyc
+
+# Cake - Uncomment if you are using it
+# tools/**
+# !tools/packages.config
+
+# Tabs Studio
+*.tss
+
+# Telerik's JustMock configuration file
+*.jmconfig
+
+# BizTalk build output
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
+
+# OpenCover UI analysis results
+OpenCover/
+
+# Azure Stream Analytics local run output
+ASALocalRun/
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# NVidia Nsight GPU debugger configuration file
+*.nvuser
+
+# MFractors (Xamarin productivity tool) working folder
+.mfractor/
+
+# Local History for Visual Studio
+.localhistory/
+
+# Visual Studio History (VSHistory) files
+.vshistory/
+
+# BeatPulse healthcheck temp database
+healthchecksdb
+
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+MigrationBackup/
+
+# Ionide (cross platform F# VS Code tools) working folder
+.ionide/
+
+# Fody - auto-generated XML schema
+FodyWeavers.xsd
+
+# VS Code files for those working on multiple tools
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# Windows Installer files from build outputs
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# JetBrains Rider
+*.sln.iml
+
+# .NET 8/9 specific
+**/appsettings.*.json
+!**/appsettings.json
+!**/appsettings.Development.json
+
+# Node.js (for React frontends)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# npm
+package-lock.json
+yarn.lock
+
+# Environments
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+
+# Docker
+.dockerignore
+
+# IDE specific
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Additional temporary files and folders
+*.bak
+*.backup
+*.old
+*~
+*.orig
+*.rej
+*.swp
+*.swo
+*.tmp
+.#*
+#*#
+
+# Temporary assembly info files
+**/AssemblyInfo.cs.tmp
+**/TemporaryGeneratedFile_*.cs
+
+# Temporary NuGet files
+*.nupkg
+*.snupkg
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+# Build agent temporary folders
+_work/
+_temp/
+buildlogs/
+TestResults/
+
+# Additional cache directories
+.sass-cache/
+.npm/
+.yarn/
+/obj/
+/src/ApiGateway/bin/Debug/net9.0/ApiGateway.dll
+/src/ApiGateway/bin/Debug/net9.0/ApiGateway.exe
+/src/ApiGateway/bin/Debug/net9.0/ApiGateway.pdb
+/src/ApiGateway/bin/Debug/net9.0/Lynx.Abstractions.dll
+/src/ApiGateway/bin/Debug/net9.0/Lynx.Abstractions.pdb
+/src/IdentityService/obj/Debug/net9.0/IdentityService.AssemblyInfo.cs
+/src/Lynx.Testing/bin/Debug/net9.0/Lynx.Testing.dll
+/src/Lynx.Testing/bin/Debug/net9.0/Lynx.Testing.pdb
+/src/NotificationService/obj/Debug/net9.0/NotificationService.AssemblyInfo.cs
+/src/NotificationService/obj/Debug/net9.0/NotificationService.AssemblyInfoInputs.cache
+/src/NotificationService/obj/Debug/net9.0/NotificationService.csproj.AssemblyReference.cache
+/src/ApiGateway/obj/Debug/net9.0/ref/ApiGateway.dll
+/src/ApiGateway/obj/Debug/net9.0/refint/ApiGateway.dll
+/src/ApiGateway/obj/Debug/net9.0/ApiGateway.AssemblyInfo.cs
+/src/ApiGateway/obj/Debug/net9.0/ApiGateway.AssemblyInfoInputs.cache
+/src/ApiGateway/obj/Debug/net9.0/ApiGateway.csproj.AssemblyReference.cache
+/src/ApiGateway/obj/Debug/net9.0/ApiGateway.csproj.FileListAbsolute.txt
+/src/ApiGateway/obj/Debug/net9.0/ApiGateway.dll
+/src/ApiGateway/obj/Debug/net9.0/ApiGateway.pdb
+/src/ApiGateway/obj/Debug/net9.0/ApiGateway.sourcelink.json
+/src/ApiGateway/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
+/src/ApiGateway/obj/Debug/net9.0/apphost.exe
+/src/ApiGateway/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
+/src/IdentityService/obj/Debug/net9.0/IdentityService.AssemblyInfoInputs.cache
+/src/IdentityService/obj/Debug/net9.0/IdentityService.csproj.AssemblyReference.cache
+/src/Lynx.Testing/obj/Debug/net9.0/Lynx.Testing.AssemblyInfoInputs.cache
+/src/Lynx.Testing/obj/Debug/net9.0/Lynx.Testing.dll
+/src/Lynx.Testing/obj/Debug/net9.0/Lynx.Testing.AssemblyInfo.cs
+/src/Lynx.Testing/obj/Debug/net9.0/Lynx.Testing.pdb
+/src/Lynx.Testing/obj/Debug/net9.0/refint/Lynx.Testing.dll
+/src/Lynx.Testing/obj/Debug/net9.0/Lynx.Testing.sourcelink.json
+/src/Lynx.Testing/obj/Debug/net9.0/ref/Lynx.Testing.dll
+/src/Lynx.Abstractions/obj/Debug/net9.0/refint/Lynx.Abstractions.dll
+/src/Lynx.Abstractions/obj/Debug/net9.0/Lynx.Abstractions.AssemblyInfo.cs
+/src/Lynx.Abstractions/obj/Debug/net9.0/Lynx.Abstractions.AssemblyInfoInputs.cache
+/src/Lynx.Abstractions/obj/Debug/net9.0/Lynx.Abstractions.dll
+/src/Lynx.Abstractions/obj/Debug/net9.0/Lynx.Abstractions.pdb
+/src/Lynx.Abstractions/obj/Debug/net9.0/Lynx.Abstractions.sourcelink.json
+/src/Lynx.Abstractions/obj/Debug/net9.0/ref/Lynx.Abstractions.dll
+/src/Lynx.Abstractions/bin/Debug/net9.0/Lynx.Abstractions.dll
+/src/Lynx.Abstractions/bin/Debug/net9.0/Lynx.Abstractions.pdb
+/src/Lynx.Abstractions/bin/Debug/Lynx.Abstractions.0.1.0.nupkg
+/tests/ApiGateway.UnitTests/obj/Debug/net9.0/ApiGateway.UnitTests.AssemblyInfo.cs
+/tests/ApiGateway.UnitTests/obj/Debug/net9.0/ApiGateway.UnitTests.AssemblyInfoInputs.cache
+/tests/ApiGateway.UnitTests/obj/Debug/net9.0/ApiGateway.UnitTests.csproj.AssemblyReference.cache
+/tests/ApiGateway.UnitTests/obj/Debug/net9.0/ApiGateway.UnitTests.csproj.FileListAbsolute.txt
+/tests/IdentityService.UnitTests/obj/Debug/net9.0/IdentityService.UnitTests.AssemblyInfo.cs
+/tests/IdentityService.UnitTests/obj/Debug/net9.0/IdentityService.UnitTests.AssemblyInfoInputs.cache
+/tests/IdentityService.UnitTests/obj/Debug/net9.0/IdentityService.UnitTests.csproj.AssemblyReference.cache
+/tests/NotificationService.UnitTests/obj/Debug/net9.0/NotificationService.UnitTests.AssemblyInfo.cs
+/tests/NotificationService.UnitTests/obj/Debug/net9.0/NotificationService.UnitTests.AssemblyInfoInputs.cache
+/tests/NotificationService.UnitTests/obj/Debug/net9.0/NotificationService.UnitTests.csproj.AssemblyReference.cache

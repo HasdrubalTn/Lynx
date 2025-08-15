@@ -5,6 +5,7 @@
 namespace ApiGateway.UnitTests.Health;
 
 using System.Net;
+using System.Threading.Tasks;
 using ApiGateway.Controllers;
 using Lynx.Abstractions.Health;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ using RichardSzalay.MockHttp;
 
 public sealed class ApiGatewayHealthTests
 {
-    [Fact]
+    [Theory]
     [AutoData]
     public void Health_Returns200([Frozen] ILogger<HealthController> logger)
     {
@@ -31,7 +32,7 @@ public sealed class ApiGatewayHealthTests
         response.Status.Should().Be(HealthStatus.Healthy);
     }
 
-    [Fact]
+    [Theory]
     [AutoData]
     public async Task Ready_Returns200_WhenAllDepsOk(
         [Frozen] ILogger<HealthController> logger)
@@ -65,7 +66,7 @@ public sealed class ApiGatewayHealthTests
         response.Dependencies.Should().ContainKey("postgresql");
     }
 
-    [Fact]
+    [Theory]
     [AutoData]
     public async Task Ready_Returns503_WhenIdentityDown(
         [Frozen] ILogger<HealthController> logger)
@@ -98,7 +99,7 @@ public sealed class ApiGatewayHealthTests
         response.Dependencies["identityService"].Should().Be(HealthStatus.Unhealthy);
     }
 
-    [Fact]
+    [Theory]
     [AutoData]
     public async Task Ready_Returns503_WhenNotificationDown(
         [Frozen] ILogger<HealthController> logger)
@@ -131,7 +132,7 @@ public sealed class ApiGatewayHealthTests
         response.Dependencies["notificationService"].Should().Be(HealthStatus.Unhealthy);
     }
 
-    [Fact]
+    [Theory]
     [AutoData]
     public async Task Ready_Returns503_WhenPostgresDown(
         [Frozen] ILogger<HealthController> logger)

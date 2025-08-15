@@ -1,3 +1,9 @@
+// <copyright file="HealthController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace NotificationService.Controllers;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,15 +15,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 
-namespace NotificationService.Controllers;
-
 [ApiController]
 [Route("[controller]")]
 public sealed class HealthController(
     IConfiguration configuration,
     ILogger<HealthController> logger) : ControllerBase
 {
-    private readonly TimeSpan _timeout = TimeSpan.FromSeconds(5);
+    private readonly TimeSpan timeout = TimeSpan.FromSeconds(5);
 
     [HttpGet("health")]
     public IActionResult Health()
@@ -25,10 +29,10 @@ public sealed class HealthController(
         using var _ = logger.BeginScope("HealthCheck:{Service}", "NotificationService");
         logger.LogInformation("Health check requested");
 
-        return Ok(new HealthCheckResponse
+        return this.Ok(new HealthCheckResponse
         {
             Status = HealthStatus.Healthy,
-            Timestamp = DateTime.UtcNow
+            Timestamp = DateTime.UtcNow,
         });
     }
 
@@ -38,7 +42,7 @@ public sealed class HealthController(
         using var _ = logger.BeginScope("HealthCheck:{Service}", "NotificationService");
         logger.LogInformation("Readiness check requested");
 
-        var postgresqlStatus = await CheckPostgreSqlHealthAsync(cancellationToken);
+        var postgresqlStatus = await this.CheckPostgreSqlHealthAsync(cancellationToken);
 
         var response = new HealthCheckResponse
         {
@@ -46,11 +50,11 @@ public sealed class HealthController(
             Dependencies = new Dictionary<string, HealthStatus>
             {
                 ["postgresql"] = postgresqlStatus
-            }
+            },
         };
 
         var statusCode = response.Status == HealthStatus.Healthy ? 200 : 503;
-        return StatusCode(statusCode, response);
+        return this.StatusCode(statusCode, response);
     }
 
     private async Task<HealthStatus> CheckPostgreSqlHealthAsync(CancellationToken cancellationToken)
@@ -64,7 +68,7 @@ public sealed class HealthController(
             var stopwatch = Stopwatch.StartNew();
             await using var connection = new NpgsqlConnection(connectionString);
             using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            timeoutCts.CancelAfter(_timeout);
+            timeoutCts.CancelAfter(this.timeout);
 
             await connection.OpenAsync(timeoutCts.Token);
             await using var command = connection.CreateCommand();
@@ -72,7 +76,8 @@ public sealed class HealthController(
             await command.ExecuteScalarAsync(timeoutCts.Token);
             stopwatch.Stop();
 
-            logger.LogInformation("Dependency check completed: PostgreSQL - {Status} - {ResponseTime}ms",
+            logger.LogInformation(
+                "Dependency check completed: PostgreSQL - {Status} - {ResponseTime}ms",
                 HealthStatus.Healthy, stopwatch.ElapsedMilliseconds);
             return HealthStatus.Healthy;
         }
