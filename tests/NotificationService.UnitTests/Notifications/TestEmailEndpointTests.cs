@@ -50,12 +50,12 @@ public class TestEmailEndpointTests
         // Assert
         actionResult.Should().NotBeNull();
         actionResult.Result.Should().NotBeNull();
-        
+
         // Check that we got an ObjectResult (Accepted is a subclass)
         var objectResult = actionResult.Result as ObjectResult;
         objectResult.Should().NotBeNull();
         objectResult!.StatusCode.Should().Be(202);
-        
+
         var response = objectResult.Value as TestEmailResponse;
         response.Should().NotBeNull();
         response!.MessageId.Should().NotBeNullOrEmpty();
@@ -110,10 +110,10 @@ public class TestEmailEndpointTests
         // Assert
         actionResult.Should().NotBeNull();
         actionResult.Result.Should().NotBeNull();
-        
+
         var objectResult = actionResult.Result as ObjectResult;
         objectResult.Should().NotBeNull();
-        
+
         var response = objectResult!.Value as TestEmailResponse;
         response.Should().NotBeNull();
         response!.MessageId.Should().NotBeNullOrEmpty();
@@ -143,7 +143,7 @@ public class TestEmailEndpointTests
         // Assert
         actionResult.Should().NotBeNull();
         actionResult.Result.Should().NotBeNull();
-        
+
         // Verify that logging occurred (check that logger was called)
         // Use Received to check for any LogInformation call
         logger.Received().Log(
