@@ -6,7 +6,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService", "src/Iden
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "src/NotificationService/NotificationService.csproj", "{A3A33333-3333-3333-3333-333333333333}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lynx.Abstractions", "src/Lynx.Abstractions/Lynx.Abstractions.csproj", "{A5A55555-5555-5555-5555-555555555555}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lynx.Testing", "src/Lynx.Testing/Lynx.Testing.csproj", "{A6A66666-6666-6666-6666-666666666666}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway.UnitTests", "tests/ApiGateway.UnitTests/ApiGateway.UnitTests.csproj", "{A4A44444-4444-4444-4444-444444444444}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.UnitTests", "tests/IdentityService.UnitTests/IdentityService.UnitTests.csproj", "{A7A77777-7777-7777-7777-777777777777}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService.UnitTests", "tests/NotificationService.UnitTests/NotificationService.UnitTests.csproj", "{A8A88888-8888-8888-8888-888888888888}"
 EndProject
 Global
 EndGlobal
