@@ -41,7 +41,7 @@ public static class SeedData
         // Create admin user
         const string adminEmail = "admin@lynx.local";
         var adminUser = await userManager.FindByEmailAsync(adminEmail);
-        
+
         if (adminUser == null)
         {
             logger.LogInformation("Creating admin user: {AdminEmail}", adminEmail);
@@ -54,7 +54,7 @@ public static class SeedData
 
             var password = Environment.GetEnvironmentVariable("LYNX_ADMIN_PASSWORD") ?? "Admin123!";
             var result = await userManager.CreateAsync(adminUser, password);
-            
+
             if (result.Succeeded)
             {
                 logger.LogInformation("Admin user created successfully");
