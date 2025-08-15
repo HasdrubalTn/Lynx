@@ -35,7 +35,7 @@ public sealed class ApiGatewayHealthTests
 
     [Theory]
     [AutoDataWithMocking]
-    public async Task Ready_Returns200_WhenAllDepsOk(
+    public async Task Ready_Returns503_WhenPostgresUnavailable(
         [Frozen] ILogger<HealthController> logger)
     {
         // Arrange
@@ -59,16 +59,16 @@ public sealed class ApiGatewayHealthTests
         var result = await sut.ReadyAsync(CancellationToken.None);
 
         // Assert
-        var okResult = result.Should().BeOfType<ObjectResult>().Subject;
-        okResult.StatusCode.Should().Be(503); // Expected 503 because PostgreSQL connection will fail in test
-        var response = okResult.Value.Should().BeOfType<HealthCheckResponse>().Subject;
+        var statusResult = result.Should().BeOfType<ObjectResult>().Subject;
+        statusResult.StatusCode.Should().Be(503); // PostgreSQL connection will fail in test environment
+        var response = statusResult.Value.Should().BeOfType<HealthCheckResponse>().Subject;
         response.Status.Should().Be(HealthStatus.Unhealthy);
         response.Dependencies.Should().ContainKey("identityService");
         response.Dependencies.Should().ContainKey("notificationService");
         response.Dependencies.Should().ContainKey("postgresql");
         response.Dependencies["identityService"].Should().Be(HealthStatus.Healthy);
         response.Dependencies["notificationService"].Should().Be(HealthStatus.Healthy);
-        response.Dependencies["postgresql"].Should().Be(HealthStatus.Unhealthy); // PostgreSQL will fail in test
+        response.Dependencies["postgresql"].Should().Be(HealthStatus.Unhealthy); // PostgreSQL will fail in test environment
     }
 
     [Theory]
