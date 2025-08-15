@@ -23,13 +23,8 @@ jobs:
         run: dotnet restore
       - name: Install Code Coverage
         run: dotnet tool install -g dotnet-coverage
-      - name: Build Main Services
-        run: |
-          dotnet build src/ApiGateway/ApiGateway.csproj --configuration Release
-          dotnet build src/IdentityService/IdentityService.csproj --configuration Release  
-          dotnet build src/NotificationService/NotificationService.csproj --configuration Release
-          dotnet build src/Lynx.Abstractions/Lynx.Abstractions.csproj --configuration Release
-          dotnet build src/Lynx.Testing/Lynx.Testing.csproj --configuration Release
+      - name: Build Solution
+        run: dotnet build --configuration Release
       - name: Format Check
         run: echo "Format check temporarily disabled - StyleCop warnings need fixing"
       - name: Test
