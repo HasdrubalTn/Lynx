@@ -7,6 +7,9 @@ namespace IdentityService.Data;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Duende.IdentityServer.EntityFramework.DbContexts;
+using Duende.IdentityServer.EntityFramework.Mappers;
+using IdentityService.Configuration;
 using IdentityService.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -74,5 +77,65 @@ public static class SeedData
         }
 
         logger.LogInformation("Admin user seeding completed");
+    }
+
+    /// <summary>
+    /// Seeds initial IdentityServer configuration data.
+    /// </summary>
+    /// <param name="context">The configuration database context.</param>
+    /// <param name="logger">The logger.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+    public static async Task SeedIdentityServerDataAsync(
+        ConfigurationDbContext context,
+        ILogger logger)
+    {
+        using var scope = logger.BeginScope("SeedIdentityServerData");
+
+        // Seed Clients
+        if (!context.Clients.Any())
+        {
+            logger.LogInformation("Seeding IdentityServer clients");
+
+            foreach (var client in IdentityConfig.Clients)
+            {
+                context.Clients.Add(client.ToEntity());
+            }
+        }
+
+        // Seed Identity Resources
+        if (!context.IdentityResources.Any())
+        {
+            logger.LogInformation("Seeding IdentityServer identity resources");
+
+            foreach (var resource in IdentityConfig.IdentityResources)
+            {
+                context.IdentityResources.Add(resource.ToEntity());
+            }
+        }
+
+        // Seed API Scopes
+        if (!context.ApiScopes.Any())
+        {
+            logger.LogInformation("Seeding IdentityServer API scopes");
+
+            foreach (var apiScope in IdentityConfig.ApiScopes)
+            {
+                context.ApiScopes.Add(apiScope.ToEntity());
+            }
+        }
+
+        // Seed API Resources
+        if (!context.ApiResources.Any())
+        {
+            logger.LogInformation("Seeding IdentityServer API resources");
+
+            foreach (var resource in IdentityConfig.ApiResources)
+            {
+                context.ApiResources.Add(resource.ToEntity());
+            }
+        }
+
+        await context.SaveChangesAsync();
+        logger.LogInformation("IdentityServer data seeding completed");
     }
 }
