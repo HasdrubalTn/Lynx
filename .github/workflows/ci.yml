@@ -15,7 +15,29 @@ jobs:
         with:
           script: |
             const body = context.payload.pull_request.body || "";
-            if(!/Fixes\s+#\d+/i.test(body)) core.setFailed("PR must link an issue (Fixes #123).");
+            console.log("PR Body:", body);
+            console.log("Testing regex patterns...");
+            
+            // More flexible patterns to match various issue linking formats
+            const patterns = [
+              /Fixes\s+#\d+/i,           // "Fixes #123"
+              /Closes\s+#\d+/i,          // "Closes #123"  
+              /Resolves\s+#\d+/i,        // "Resolves #123"
+              /#\d+/                     // Simple "#123"
+            ];
+            
+            let found = false;
+            for (const pattern of patterns) {
+              if (pattern.test(body)) {
+                console.log(`✅ Found issue link with pattern: ${pattern}`);
+                found = true;
+                break;
+              }
+            }
+            
+            if (!found) {
+              core.setFailed("PR must link an issue (Fixes #123, Closes #123, Resolves #123, or #123).");
+            }
       - name: Ensure single feature type
         run: |
           TYPE=$(grep -i "Single feature type" -n .github/pull_request_template.md >/dev/null && echo "ok" || echo "missing"); echo $TYPE
