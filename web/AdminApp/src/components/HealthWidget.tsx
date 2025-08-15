@@ -12,8 +12,9 @@ export default function HealthWidget() {
   const [isLoading, setIsLoading] = useState(true)
 
   const checkHealth = async () => {
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
     try {
-      const response = await fetch('http://localhost:8080/health/ready')
+      const response = await fetch(`${apiBaseUrl}/health/ready`)
       if (response.ok) {
         const data: HealthStatus = await response.json()
         setHealth(data)

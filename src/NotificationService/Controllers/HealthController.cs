@@ -61,7 +61,7 @@ public sealed class HealthController(
 
         try
         {
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            var stopwatch = Stopwatch.StartNew();
             await using var connection = new NpgsqlConnection(connectionString);
             using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             timeoutCts.CancelAfter(_timeout);
